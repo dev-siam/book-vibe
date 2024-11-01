@@ -16,20 +16,21 @@ import ListedBooks from "./Components/ListedBooks.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root></Root>,
-    errorElement: <ErrorPage></ErrorPage>,
+    element: <Root />,
+    // errorElement: <ErrorPage></ErrorPage>,
     children: [
       { path: "/", element: <Home></Home> },
-      { path: "/dashboard", element: <Dashboard></Dashboard> },
+      { path: "/home", element: <Home></Home> },
+      // { path: "/dashboard", element: <Dashboard></Dashboard> },
       {
         path: "/listedBooks",
         element: <ListedBooks></ListedBooks>,
-        loader: () => fetch("./booksData.json"), // dont load all data for one
+        loader: () => fetch("/booksData.json"), // don't load all data for one
       },
       {
-        path: "/books/:bookId",
+        path: "/listedBooks/:bookId",
         element: <BookDetail></BookDetail>,
-        loader: () => fetch("./booksData.json"), // dont load all data for one
+        loader: () => fetch("/booksData.json"), // don't load all data for one
       },
     ],
   },

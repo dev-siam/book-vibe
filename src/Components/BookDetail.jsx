@@ -5,11 +5,16 @@ import { addToStoredReadlist, addToStoredWishlist } from './utility/addToDB';
 const BookDetail = () => {
 
     const { bookId } = useParams();
-    const data = useLoaderData()
-    // console.log(data);
+    let data = useLoaderData() || [];
+    // if(data?.length > 0) {data = data}
+    // else{
+    //   data= [];
+    // }
+    console.log(data);
 
-    const book = data.find((book) => book.bookId === parseInt(bookId));
+    const book = data?.length && data?.find((book) => book.bookId === parseInt(bookId));
     // console.log(book);
+    // const book = {};
 
     const {
       bookId: currentBokId,
@@ -59,7 +64,7 @@ const BookDetail = () => {
           <p>
             <b>Review : </b> {review}
           </p>
-          <div className="flex gap-4 my-2">
+          <div className="flex items-center gap-4 my-2">
             <b>Tag</b>
             <div className="flex gap-4 items-center">
               {tags.map((tag, index) => (
